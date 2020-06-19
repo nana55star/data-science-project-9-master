@@ -2,7 +2,7 @@
 
 import pandas as pd
 import psycopg2
-
+import datetime
 connection = psycopg2.connect(user="postgres", password="barmej", host="127.0.0.1", port="5432", database="imdb_database")
 
 cursor = connection.cursor()
@@ -15,7 +15,7 @@ labels
 
 data = pd.read_csv('IMDB_Dataset.csv')
 data.insert(0, 'id', range(1,1+len(data)))
-data.insert(3, 'date', pd.datetime.now().replace(microsecond=0))
+data.insert(3, 'date', datetime.datetime.now().replace(microsecond=0))
 
 
 # creating column list for insertion
@@ -50,7 +50,7 @@ result = cursor.fetchall()
 for i in result:
     print(i)
 
-sq2 = "SELECT * FROM data_labeling2 WHERE id_label=4"
+sq2 = "SELECT * FROM data_labeling3 WHERE id_label=4"
 cursor.execute(sq2)
 result = cursor.fetchall()
 for i in result:
